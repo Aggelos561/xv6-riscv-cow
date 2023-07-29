@@ -1,3 +1,35 @@
+# Copy-on-Write (COW) Implementation
+
+This repository contains a simple implementation of the Copy-on-Write (COW) mechanism in the xv6 operating system. The COW technique is a memory optimization strategy that allows multiple processes to share the same memory pages until a modification is attempted. When a modification is made, the page is copied, ensuring that each process has its own unique copy of the modified page.
+
+## Building and Running
+
+2. Compile the xv6 kernel with the COW code and the test programs:
+
+```bash
+make
+```
+
+3. Run the xv6 operating system using QEMU:
+
+```bash
+make qemu
+```
+
+## Testing
+
+This repository includes two test programs to verify the COW implementation:
+
+```bash
+cowtest
+```
+
+```bash
+usertests
+```
+
+
+
 xv6 is a re-implementation of Dennis Ritchie's and Ken Thompson's Unix
 Version 6 (v6).  xv6 loosely follows the structure and style of v6,
 but is implemented for a modern RISC-V multiprocessor using ANSI C.
@@ -47,34 +79,3 @@ You will need a RISC-V "newlib" tool chain from
 https://github.com/riscv/riscv-gnu-toolchain, and qemu compiled for
 riscv64-softmmu.  Once they are installed, and in your shell
 search path, you can run "make qemu".
-
-
-# Copy-on-Write (COW) Implementation
-
-This repository contains a simple implementation of the Copy-on-Write (COW) mechanism in the xv6 operating system. The COW technique is a memory optimization strategy that allows multiple processes to share the same memory pages until a modification is attempted. When a modification is made, the page is copied, ensuring that each process has its own unique copy of the modified page.
-
-## Building and Running
-
-2. Compile the xv6 kernel with the COW code and the test programs:
-
-```bash
-make
-```
-
-3. Run the xv6 operating system using QEMU:
-
-```bash
-make qemu
-```
-
-## Testing
-
-This repository includes two test programs to verify the COW implementation:
-
-```bash
-cowtest
-```
-
-```bash
-usertests
-```
