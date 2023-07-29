@@ -50,7 +50,12 @@ usertrap(void)
   // save user program counter.
   p->trapframe->epc = r_sepc();
   
-  if(r_scause() == 8){
+  //Also checking if the scause is 15 so we can make a new page with PTE_W bit = 1
+  if (r_scause() == 15) {
+    if ((cow_fault_handler(p->pagetable, r_stval())) < 0) {
+      p->killed = 1;
+    }
+  } else if(r_scause() == 8){
     // system call
 
     if(killed(p))
